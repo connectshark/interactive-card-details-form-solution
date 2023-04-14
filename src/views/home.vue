@@ -21,7 +21,16 @@
         </div>
       </div>
     </div>
-    <form class="form" @submit.prevent>
+    <div class="form-back">
+      <div v-if="check" class="thank">
+        <figure>
+          <img src="../assets/img/icon-complete.svg" alt="">
+        </figure>
+        <h2>thank you!</h2>
+        <p>We've added your card details</p>
+        <p><button class="continue-btn" type="button">Continue</button></p>
+      </div>
+      <form v-else class="form" @submit.prevent="submitHandler">
       <div class="row">
         <label class="title" for="name">cardholder name</label>
         <p>
@@ -52,13 +61,13 @@
       <div class="row">
         <button class="submit-btn" type="submit">Comfirm</button>
       </div>
-    </form>
+      </form>
+    </div>
   </main>
 </template>
 
 <script setup>
-import { computed } from '@vue/reactivity'
-import { reactive } from 'vue'
+import { reactive, computed, ref } from 'vue'
 
 const months = [
   '01',
@@ -79,11 +88,13 @@ const years = [24, 25, 26, 27]
 
 const form = reactive({
   code: '',
-  name: 'James',
+  name: '',
   month: '',
   year: '',
   cvc: ''
 })
+
+const check = ref(false)
 
 const codeFormatter = computed(() => {
   if (form.code === '') {
@@ -94,6 +105,9 @@ const codeFormatter = computed(() => {
   }
 })
 
+const submitHandler = () => {
+  check.value = !check.value
+}
 </script>
 
 <style scoped>
@@ -132,9 +146,11 @@ const codeFormatter = computed(() => {
   grid-row: 1 / 4;
 }
 
-.form {
+.form-back {
   padding: 2rem 1rem;
   box-sizing: border-box;
+}
+.form {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   grid-template-rows: repeat(3, minmax(0, 1fr));
@@ -162,11 +178,18 @@ const codeFormatter = computed(() => {
   font-size: var(--font-size);
   border-radius: .5rem;
   border: none;
-  outline: 1px solid var(--light-grayish-violet);
+  outline: 2px solid var(--very-dark-violet);
   letter-spacing: 1px;
+}
+.bar:placeholder-shown {
+  outline: 2px solid var(--light-grayish-violet);
+}
+.bar:focus {
+  outline: 2px solid var(--very-dark-violet);
 }
 .select-bar {
   width: 45%;
+  appearance: none;
 }
 .select-bar:last-child {
   margin-left: 10%;
@@ -176,7 +199,7 @@ const codeFormatter = computed(() => {
   letter-spacing: 1px;
   font-weight: var(--font-weight);
 }
-
+.thank .continue-btn,
 .submit-btn {
   font-size: var(--font-size);
   border: none;
@@ -188,8 +211,24 @@ const codeFormatter = computed(() => {
   border-radius: 1rem;
   letter-spacing: 1px;
   cursor: pointer;
+  transition: opacity .3s ease;
 }
-
+.thank .continue-btn:hover,
+.submit-btn:hover {
+  opacity: .8;
+}
+.thank {
+  text-align: center;
+}
+.thank h2 {
+  font-size: 20px;
+  line-height: 3;
+  text-transform: uppercase;
+}
+.thank p:not(:last-child) {
+  color: var(--dark-grayish-violet);
+  margin-bottom: 3rem;
+}
 .detail {
   position: absolute;
   width: 100%;
@@ -230,12 +269,11 @@ const codeFormatter = computed(() => {
     align-items: center;
     justify-content: center;
   }
-  .card-bg {
+  .card-bg, .form-back{
     width: 50%;
   }
-  .form {
-    margin: 0 2.5%;
-    width: 45%;
+  .form, .thank {
+    max-width: 600px;
   }
   .card-bg{
     min-height: 100svh;
@@ -245,7 +283,7 @@ const codeFormatter = computed(() => {
   }
   .card {
     padding: 0 2rem;
-    max-width: 100%;
+    max-width: 600px;
     grid-template-columns: repeat(5, minmax(0, 1fr));
     grid-template-rows: repeat(9, minmax(0, 1fr));
   }
@@ -259,6 +297,9 @@ const codeFormatter = computed(() => {
   .detail .code {
     font-size: 22px;
     letter-spacing: 4px;
+  }
+  .cvc {
+    top: 45%;
   }
 }
 </style>
