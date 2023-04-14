@@ -2,7 +2,10 @@
   --white: #ffffff;
   --light-grayish-violet: #dedddf;
   --dark-grayish-violet: #8e8593;
+  --very-dark-violet-alpha: #21092faa;
   --very-dark-violet: #21092f;
+
+  --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.4), 0 2px 4px -2px rgb(0 0 0 / 0.4);
 
   --liner-from: hsl(249, 99%, 64%);
   --liner-to: hsl(278, 94%, 30%);
