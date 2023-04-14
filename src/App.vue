@@ -5,7 +5,9 @@
 
 <style>
 #app {
-  font-family: 'Poppins', 'Noto Sans TC', sans-serif;
-  text-align: center;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: var(--font-size);
+  font-weight: var(--font-weight);
+  min-height: 100svh;
 }
 </style>

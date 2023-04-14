@@ -1,0 +1,13 @@
+:root {
+  --white: #ffffff;
+  --light-grayish-violet: #dedddf;
+  --dark-grayish-violet: #8e8593;
+  --very-dark-violet: #21092f;
+
+  --liner-from: hsl(249, 99%, 64%);
+  --liner-to: hsl(278, 94%, 30%);
+  --input-errors: hsl(0, 100%, 66%);
+
+  --font-size: 18px;
+  --font-weight: 500;
+}
