@@ -34,7 +34,7 @@
       <div class="row">
         <label class="title" for="name">cardholder name</label>
         <p>
-          <input v-model="form.name" pattern="^[a-zA-Z\s]+$" class="bar" type="text" id="name" placeholder="e.g.Jane Appleseed" required>
+          <input v-model="form.name" maxlength="25" pattern="^[a-zA-Z\s]+$" class="bar" type="text" id="name" placeholder="e.g.Jane Appleseed" required>
         </p>
       </div>
       <div class="row">
@@ -259,7 +259,7 @@ const submitHandler = () => {
 }
 .cvc {
   position: absolute;
-  top: 44%;
+  top: 45%;
   right: 14%;
   font-size: 16px;
 }
@@ -297,9 +297,6 @@ const submitHandler = () => {
   .detail .code {
     font-size: 22px;
     letter-spacing: 4px;
-  }
-  .cvc {
-    top: 45%;
   }
 }
 </style>
